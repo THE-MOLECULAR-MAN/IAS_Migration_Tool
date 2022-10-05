@@ -2,18 +2,18 @@
 
 from customer import Customer
 
-## Use Organization API Keys generated in Rapid7 Platform
-## User Input for required information
+# Use Organization API Keys generated in Rapid7 Platform
+# User Input for required information
 TOKEN_ORIGINAL = input("Enter Original Customer API Key: ")
 TOKEN_DESTINATION = input("Enter Destination Customer API Key: ")
 
 # TOKEN_ORIGINAL = ('REDACTED')       # source
 # TOKEN_DESTINATION = ('REDACTED')    # destination
 
-## Enumerate applications in the original customer
+# Enumerate applications in the original customer
 enumerate_origin_apps = Customer(TOKEN_ORIGINAL)
 if TOKEN_ORIGINAL != "":
-    ##enumerate_origin_apps.get_apps()
+    # enumerate_origin_apps.get_apps()
     app_enumeration = enumerate_origin_apps.get_apps()
 else:
     print("Original Customer API Key is missing.")
