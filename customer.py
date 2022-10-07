@@ -4,7 +4,6 @@
 import requests
 
 URL_BASE = "https://us.api.insight.rapid7.com/ias/v1"
-REQUEST_TIMEOUT = 5
 
 # Customer class to handle all work done with both source and destination
 # customers
@@ -32,7 +31,7 @@ class Customer:
         url = f"{URL_BASE}/apps"
         try:
             response = requests.get(
-                url, headers=self.headers, timeout=REQUEST_TIMEOUT)
+                url, headers=self.headers, timeout=5)
             response.raise_for_status()
         except requests.HTTPError as exception:
             return exception
@@ -55,7 +54,7 @@ class Customer:
                 url,
                 headers=self.headers,
                 json=payload,
-                timeout=REQUEST_TIMEOUT)
+                timeout=5)
             response.raise_for_status()
         except requests.HTTPError as exception:
             return exception
@@ -73,7 +72,7 @@ class Customer:
         url = f"{URL_BASE}/apps/{app_id}/files"
         try:
             response = requests.get(
-                url, headers=self.headers, timeout=REQUEST_TIMEOUT)
+                url, headers=self.headers, timeout=5)
             response.raise_for_status()
         except requests.HTTPError as exception:
             return exception
@@ -92,7 +91,7 @@ class Customer:
         url = f"{URL_BASE}/scan-configs/{config_id}/options"
         try:
             response = requests.get(
-                url, headers=self.headers, timeout=REQUEST_TIMEOUT)
+                url, headers=self.headers, timeout=5)
             response.raise_for_status()
         except requests.HTTPError as exception:
             return exception
@@ -107,12 +106,12 @@ class Customer:
 # >>>>>>> Stashed changes
         try:
             # response = requests.get(self.url, headers=self.headers, data =
-            # self.payload, timeout=REQUEST_TIMEOUT) # Dave's original
+            # self.payload, timeout=5) # Dave's original
             response = requests.get(
                 url,
                 headers=self.headers,
                 data=self.payload,
-                timeout=REQUEST_TIMEOUT)    # Tim's modification
+                timeout=5)    # Tim's modification
             response.raise_for_status()
         except requests.HTTPError as exception:
             return exception
@@ -134,12 +133,12 @@ class Customer:
             self.url,
             headers=self.headers,
             data=self.payload,
-            timeout=REQUEST_TIMEOUT)
+            timeout=5)
         print(response.text.encode('utf8'))
         #print("API Token: "+ str(self.token))
 
         location = response.headers.get(
-            'Location', None, timeout=REQUEST_TIMEOUT)
+            'Location', None, timeout=5)
         if location:
             print("successfully create: " + app_name)
         # return
